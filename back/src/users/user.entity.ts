@@ -28,4 +28,7 @@ export class Users{
     
     @Column()
     userSex: string;
+
+    @Column()
+    userPwd: string;
 }

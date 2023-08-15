@@ -20,7 +20,8 @@ export class LoginComponent implements OnInit{
 
   ngOnInit(): void {
     this.formLogin = new FormGroup({
-      userEmail: new FormControl ('', [Validators.email, Validators.required])
+      userEmail: new FormControl ('', [Validators.email, Validators.required]),
+      userPwd: new FormControl('')
     })
   }
 
@@ -30,21 +31,26 @@ export class LoginComponent implements OnInit{
       alert('email invalido');
       return
     }
-
     const emailForm = this.formLogin.value.userEmail;
-    this.userService.getUser(emailForm).subscribe({
+    const pwdForm = this.formLogin.value.userPwd;
+    this.userService.getUser(emailForm, pwdForm).subscribe({
       next: (res: any) => {
-        console.log(res);
-        console.log(res.userType);
+        if (res === null){
+          alert("senha invalida");
+          return;
+        }
         if(res.userType != 1){
           this.route.navigate(['client'])
         }
         else{
-
           this.route.navigate(['admin']);
         }
+      },
+      error: error =>{
+        console.log(error)
       }
     })
     console.log(emailForm);
+    console.log(pwdForm);
   }
 }

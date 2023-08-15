@@ -13,10 +13,12 @@ export class UserService {
     return this.http.get(`${this.baseUrl}/users`);
   }
 
-  getUser(email: string):Observable<any>{
-    return this.http.get(`${this.baseUrl}/users/email/${email}`);
+  getUser(email: string, password: string):Observable<any>{
+    //define a rota entrando no controler  user procurando o login
+    const urlGet = `${this.baseUrl}/users/login`; 
+    return this.http.post(urlGet, {email, password});
   }
-
+  
   createUser(user: any):Observable<any>{
     return this.http.post(`${this.baseUrl}/users`, user);
   }

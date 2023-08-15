@@ -28,6 +28,7 @@ export class AdminScreenComponent implements OnInit {
       userAddress: new FormControl (''),
       userPhone: new FormControl ('', Validators.minLength(11)),
       userEmail: new FormControl ('', [Validators.email]),
+      userPwd: new FormControl(''),
       userBirth: new FormControl (''),
       userType: new FormControl (''),
       userSex: new FormControl (''),
@@ -35,6 +36,7 @@ export class AdminScreenComponent implements OnInit {
   }
 
   deleteItem(id: number) {
+    console.log(id);
     this.userService.deleteUser(id).subscribe(message => {
       alert(message);
     })
@@ -49,6 +51,7 @@ export class AdminScreenComponent implements OnInit {
       userAddress: userData.userAddress,
       userPhone: userData.userPhone,
       userEmail: userData.userEmail,
+      userPwd: userData.userPwd,
       userBirth: userData.userBirth,
       userType: userData.userType,
       userSex: userData.userSex
@@ -57,7 +60,6 @@ export class AdminScreenComponent implements OnInit {
 
   }
   onBack() {
-    console.log(" aqui")
     this.userItem = undefined
   }
   onSubmit(){

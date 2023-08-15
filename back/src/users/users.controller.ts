@@ -1,5 +1,11 @@
-import { Controller, Get, Post, Put, Delete, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Body, Param, Query } from '@nestjs/common';
 import { UsersService } from './users.service';
+import { query } from 'express';
+
+interface userlogin{
+    email: string,
+    password: string
+}
 
 @Controller('users')
 export class UsersController {
@@ -10,14 +16,15 @@ export class UsersController {
     @Get()
     async findAll(){
         return this.usersService.findAll();
-    }
+    }    
 
-    @Get('email/:email')
-    async findOne(@Param('email')email: string){
-        return this.usersService.findOne(email);
+    //post pq ele manda e recebe infos
+    @Post('login')
+    async findOne(@Body() data: userlogin){
+        console.log("user controller");
+        return this.usersService.findOne(data.email, data.password);
     }
     
-
     @Post()
     async create(@Body() userData: any){
         return this.usersService.create(userData);

@@ -2,6 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { Users } from "./user.entity";
+import { Console } from "console";
 
 @Injectable()
 export class UsersService{
@@ -16,9 +17,13 @@ export class UsersService{
     }
     
 
-    async findOne(email: string): Promise<Users>{
+    async findOne(email: string, password: string): Promise<Users>{
+        console.log("passou no user service");
         return this.usersRepository.findOne({
-            where: {userEmail: email}
+            where: {
+                userEmail: email,
+                userPwd: password
+            }
         });
     }
     

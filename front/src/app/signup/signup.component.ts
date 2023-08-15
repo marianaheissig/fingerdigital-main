@@ -24,6 +24,7 @@ export class SignupComponent implements OnInit{
       userAddress: new FormControl (''),
       userPhone: new FormControl ('', Validators.minLength(11)),
       userEmail: new FormControl ('', [Validators.email]),
+      userPwd: new FormControl(''),
       userBirth: new FormControl (''),
       userType: new FormControl (''),
       userSex: new FormControl (''),
@@ -31,7 +32,7 @@ export class SignupComponent implements OnInit{
   }
   
   onSubmit(){
-    if(this.formSignup.valid && this.formSignup.value.userName != ""){
+    if(this.formSignup.valid){
       console.log(this.formSignup);
       console.log(this.formSignup.value.userName)
       this.userService.createUser(this.formSignup.value).subscribe((data)=>{

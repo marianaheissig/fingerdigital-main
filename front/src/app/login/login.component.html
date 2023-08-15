@@ -5,6 +5,9 @@
         <form class="formLogin" [formGroup]="formLogin" (ngSubmit)="onSubmit()">
             <p class="label">Email:</p>
             <input type="email" name="txtEmail" id="txtEmail" formControlName="userEmail" placeholder="email@email.com"/>
+            
+            <p class="label">Senha:</p>
+            <input type="password" name="txtPwd" id="txtPwd" formControlName="userPwd" placeholder="senha"/>
     
             <button type="submit">Entrar</button>
         </form>
